@@ -19,8 +19,6 @@ dataset["date"] = pd.to_datetime(dataset["date"])
 dataset["year"] = dataset["date"].dt.year
 dataset["month"] = dataset["date"].dt.month
 dataset["day"] = dataset["date"].dt.day
-dataset["day_of_week"] = dataset["date"].dt.dayofweek
-dataset["week"] = dataset["date"].dt.isocalendar().week.astype(int)
 
 dataset = dataset.drop(columns=["date"])
 
@@ -41,7 +39,7 @@ print(dataset.info())
 
 #model training
 model = CatBoostRegressor(
-    iterations=1000,
+    iterations=5000,
     learning_rate=0.05,
     depth=8,
     loss_function="RMSE",
