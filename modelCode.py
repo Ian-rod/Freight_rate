@@ -3,6 +3,8 @@
 #Import statements
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from catboost import CatBoostRegressor
+import json
 
 
 ##Read the CSV
@@ -36,3 +38,25 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 print(dataset.info())
+
+#model training
+model = CatBoostRegressor(
+    iterations=1000,
+    learning_rate=0.05,
+    depth=8,
+    loss_function="RMSE",
+    verbose=100
+)
+
+model.fit(
+    X_train,
+    y_train,
+    cat_features=cat_features
+)
+
+#Save the model 
+model.save_model("posted_rate_model.cbm")
+
+#Save the feature names
+with open("feature_names.json", "w") as f:
+    json.dump(list(X.columns), f)
