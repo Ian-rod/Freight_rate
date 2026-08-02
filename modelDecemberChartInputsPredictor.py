@@ -19,7 +19,7 @@ pickup_lon=-84.99876
 delivery_lat=41.31561
 delivery_lon=-85.36206
 
-# leaves us with market_index,quote_signal Which we get the average with Lexington as pickup,Fort Wayne as delivery and with Dry van as equipment i.e. 21 entries
+#leaves us with market_index,quote_signal Which we get the average with Lexington as pickup,Fort Wayne as delivery and with Dry van as equipment i.e. 21 entries
 avgMarketIndex=1.047568571
 avgQuoteSignal=2.023341905
 
@@ -34,7 +34,6 @@ decemberChartInputs["year"] = decemberChartInputs["date"].dt.year
 decemberChartInputs["month"] = decemberChartInputs["date"].dt.month
 decemberChartInputs["day"] = decemberChartInputs["date"].dt.day
 
-decemberChartInputs = decemberChartInputs.drop(columns=["date"])
 
 
 for index, row in decemberChartInputs.iterrows():
@@ -44,7 +43,7 @@ for index, row in decemberChartInputs.iterrows():
             "pickup_lat":pickup_lat,
             "pickup_lon": pickup_lon,
             "delivery_lat": delivery_lat,
-            "delivery_lon": "delivery_lon",
+            "delivery_lon": delivery_lon,
             "distance": row["distance"],
             "equipment": row["equipment"],
             "weight": row["weight"],
@@ -57,4 +56,11 @@ for index, row in decemberChartInputs.iterrows():
     prediction = model.predict(predict_load)
     decemberChartInputs.loc[index, "predicted_rate"] = round(prediction[0], 2)
 print("done saving changes")
+
+#Drop generated columns
+decemberChartInputs = decemberChartInputs.drop(columns=["day"])
+decemberChartInputs = decemberChartInputs.drop(columns=["month"])
+decemberChartInputs = decemberChartInputs.drop(columns=["year"])
+
+#Back to CSV
 decemberChartInputs.to_csv("predictions_december_chart_inputs.csv", index=False)
