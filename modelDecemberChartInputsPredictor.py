@@ -63,4 +63,4 @@ decemberChartInputs = decemberChartInputs.drop(columns=["month"])
 decemberChartInputs = decemberChartInputs.drop(columns=["year"])
 
 #Back to CSV
-decemberChartInputs.to_csv("predictions_december_chart_inputs.csv", index=False)
+decemberChartInputs.to_csv("december-chart-inputs.csv", index=False)
