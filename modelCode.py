@@ -29,12 +29,22 @@ cat_features = ["pickup", "delivery", "equipment"]
 X = dataset.drop(columns=["posted_rate"])
 y = dataset["posted_rate"]
 
+#split data to train and test
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.2,
     random_state=42
 )
+
+#creating the validation set 
+X_train, X_val, y_train, y_val = train_test_split(
+    X_train,
+    y_train,
+    test_size=0.2,
+    random_state=42
+)
+
 print(dataset.info())
 
 #model training
@@ -43,13 +53,16 @@ model = CatBoostRegressor(
     learning_rate=0.05,
     depth=8,
     loss_function="RMSE",
+    random_seed=42,
+    early_stopping_rounds=200,
     verbose=100
 )
 
 model.fit(
     X_train,
     y_train,
-    cat_features=cat_features
+    cat_features=cat_features,
+    eval_set=(X_val, y_val)
 )
 
 #Save the model 
