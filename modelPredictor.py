@@ -42,6 +42,6 @@ for index, row in validationDataset.iterrows():
             "day": row["day"],
         },index=[0])
     prediction = model.predict(predict_load)
-    validationPredictionDataset.loc[validationPredictionDataset["load_id"] == row["load_id"], "posted_rate"] = round(prediction[0], 2)
+    validationPredictionDataset.loc[validationPredictionDataset["load_id"] == row["load_id"], "predicted_rate"] = round(prediction[0], 2)
 print("done saving changes")
-validationPredictionDataset.to_csv("updated_validation-predictions-template.csv", index=False)
+validationPredictionDataset.to_csv("validation_predictions.csv", index=False)
