@@ -1,3 +1,5 @@
+##Used to populate december_chart_inputs.csv
+
 from catboost import CatBoostRegressor
 import json
 import pandas as pd

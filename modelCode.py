@@ -1,4 +1,5 @@
-##The main code to be used to train the model
+##The main code to be used to train the model this creates posted_rate_model.cbm - the model itself
+##It also creates feature_names.json used to track the features used in training
 
 #Import statements
 import pandas as pd

@@ -1,3 +1,5 @@
+##Used to populate validation-predictions-template.csv and creates validation_predictions.csv
+
 from catboost import CatBoostRegressor
 import json
 import pandas as pd
