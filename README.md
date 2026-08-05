@@ -10,7 +10,6 @@
 + modelDecemberChartInputsPredictor.py :
   + line 27 - decemberChartInputs=pd.read_csv('data/december-chart-inputs.csv',delimiter=',')
   + line 66 - decemberChartInputs.to_csv("december-chart-inputs.csv", index=False)
-
 **THEY MAY NEED READJUSTMENT DEPENDING ON YOUR FILE STRUCTURE**
 
 
@@ -19,3 +18,5 @@
 3.  running creates 'posted_rate_model.cbm' - the model itself and 'feature_names.json' - containing names of all the features used during training
 4. run  'python modelPredictor.py' to run the model and this will create 'validation_predictions.csv' obtained from populating 'validation-predictions-template.csv'
 5. run 'python modelDecemberChartInputsPredictor.py' to populate 'december_chart_inputs.csv' 
+
+ files can be found [here](https://drive.google.com/drive/folders/10NMdRAfilwIxdB-wtv3UMpalYyt6DVex?usp=drive_link)
